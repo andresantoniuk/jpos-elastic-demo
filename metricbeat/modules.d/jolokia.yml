@@ -1,0 +1,16 @@
+- module: jolokia
+  metricsets: ["jmx"]
+  period: 10s
+  hosts: ["localhost:59010"]
+  namespace: "metrics"
+  jmx.mappings:
+    - mbean: 'java.lang:type=Runtime'
+      attributes:
+        - attr: Uptime
+          field: uptime
+    - mbean: 'java.lang:type=Memory'
+      attributes:
+        - attr: HeapMemoryUsage
+          field: memory.heap_usage
+        - attr: NonHeapMemoryUsage
+          field: memory.non_heap_usage
